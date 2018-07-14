@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <p>{{msg}}</p>
+    <router-view></router-view>
   </div>
 </template>
 
