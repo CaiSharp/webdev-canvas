@@ -1,5 +1,6 @@
 <template>
-<ul>
+<h1>hi</h1>
+<!-- <ul>
   <li v-for="value in allData">
      <div class="row">
       <div class="col s12 m6">
@@ -37,71 +38,33 @@
       </div>
     </div>
   </li>
-</ul>
+</ul> -->
 </template>
 
 <script>
 export default {
-  methods: {},
+  methods: {
+    getAll: () => {
+      // GET /someUrl
+      this.$http.get('/buildings').then(
+        response => {
+          // get body data
+          this.allData = response.body;
+          console.log(this.allData);
+        },
+        response => {
+          // error callback
+        }
+      );
+    }
+  },
   data() {
     return {
-      allData: [
-        {
-          name: 'Mein Haus',
-          floors: 2,
-          rooms: [
-            {
-              id: '132312',
-              name: 'Wohnzimmer',
-              doors: 2,
-              windows: 3,
-              qm: 25
-            },
-            {
-              id: '11232312',
-              name: 'Flur',
-              doors: 3,
-              windows: 0,
-              qm: 10
-            },
-            {
-              id: '1ads32312',
-              name: 'Schlafzimmer',
-              doors: 1,
-              windows: 1,
-              qm: 20
-            }
-          ]
-        },
-        {
-          name: 'Haus 2',
-          floors: 3,
-          rooms: [
-            {
-              id: '132234312',
-              name: 'Stube',
-              doors: 1,
-              windows: 3,
-              qm: 70
-            },
-            {
-              id: '1323qwe12',
-              name: 'Kammer',
-              doors: 5,
-              windows: 1,
-              qm: 20
-            },
-            {
-              id: '132312fsd',
-              name: 'Kueche',
-              doors: 2,
-              windows: 2,
-              qm: 20
-            }
-          ]
-        }
-      ]
+      allData: undefined
     };
+  },
+  mounted() {
+    this.getAll();
   }
 };
 </script>

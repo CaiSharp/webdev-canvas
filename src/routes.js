@@ -1,9 +1,9 @@
 import Navbar from './components/Navbar.vue'
-import Room from './components/Room.vue'
+import New from './components/New.vue'
 import Home from './components/Home.vue'
 
 export const routes = [{
-    path: '',
+    path: '/',
     name: '/home',
     components: {
       navbar: Navbar,
@@ -11,11 +11,11 @@ export const routes = [{
     }
   },
   {
-    path: '/room',
-    name: 'room',
+    path: '/new',
+    name: 'new',
     components: {
       navbar: Navbar,
-      default: Room
+      default: New
     }
   },
   //{path: '/*', redirect: {name: 'home'}}
