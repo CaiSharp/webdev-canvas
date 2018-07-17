@@ -15,7 +15,7 @@
           <div class="card-tabs">
             <ul class="tabs tabs-fixed-width">
               <li class="tab" v-for="floor in value.floors">
-                <a class="" v-on:click="displayRooms(floor.id)">{{floor.name}}</a>
+                <a class="" v-on:click="displayRooms(floor.id, value.id)">{{floor.name}}</a>
               </li>
             </ul>
           </div>
@@ -54,12 +54,14 @@ export default {
           this.allData = data.body;
         });
     },
-    displayRooms(floorId) {
+    displayRooms(floorId, buildingId) {
       this.visibleRooms = '';
       this.allData.forEach(building => {
-        building.rooms.forEach(room => {
-          if (room.floorId === floorId) {
-            const template = `
+        if (building.id === buildingId) {
+          building.rooms.forEach(room => {
+            console.log(room.floorId);
+            if (room.floorId === floorId) {
+              const template = `
           <div class="room">
             <ul>
               <li>Room Name: ${room.name}</li>
@@ -69,13 +71,14 @@ export default {
             </ul>
           </div>
           `;
-            console.log(template);
-            this.visibleRooms = this.visibleRooms + template;
-          }
-        });
+
+              this.visibleRooms = this.visibleRooms + template;
+            }
+          });
+        }
       });
-      // console.log(this.visibleRooms);
-      document.querySelector('#rooms').innerHTML = this.visibleRooms;
+
+      document.querySelector(`#${buildingId}`).innerHTML = this.visibleRooms;
     }
   },
   created() {
