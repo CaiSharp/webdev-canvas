@@ -118,7 +118,7 @@ export default {
     firstStep() {
       this.newCard.name = `${this.buildingname}`;
       for (let i = 0; i < this.floors; i++) {
-        this.newCard.floors.push({ id: `floor0${i + 1}`, name: 'empty' });
+        this.newCard.floors.push({ id: `floor0${i + 1}` });
       }
       this.viewState = 2;
     },
