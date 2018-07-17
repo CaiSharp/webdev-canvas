@@ -104,6 +104,7 @@ export default {
   data() {
     return {
       viewState: 1,
+        resource: {},
       newCard: {
         name: ``,
         floors: [],
@@ -151,19 +152,23 @@ export default {
     },
     save() {
       this.viewState = 1;
+      this.resource.saveData(this.newCard).then(response=>{
+          this.$router.push('/');
+      });
     }
-  }
+  },
+    created() {
+        const customActions = {
+            saveData: { method: 'POST', url: 'http://localhost:3000/'}
+        };
+        this.resource = this.$resource('', {}, customActions);
+    }
 };
 </script>
 
 <style lang="scss" scoped>
-.container {
-  margin-top: 100px;
-}
 
 select {
-  // width: 100px !important;
-  // height: 30px !important;
   display: inherit;
 }
 </style>

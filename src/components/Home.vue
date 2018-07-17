@@ -22,7 +22,7 @@
               </div>
               <div class="card-action">
                 <a href="#">Edit</a>
-                <a href="#">Delete</a>
+                <a @click="deleteObject(value)">Delete</a>
               </div>
             </div>
           </div>
@@ -77,18 +77,25 @@ export default {
           });
         }
       });
-
       document.querySelector(`#${buildingId}`).innerHTML = this.visibleRooms;
     },
       tooggleActive(index,id){
         this.tabActiveIndex = index;
         this.tabActiveObjId = id;
+      },
+      deleteObject(object){
+        if(confirm('Are you sure?')){
+            this.resource.deleteData(object).then(response=>{
+                this.fetchData();
+            });
+        }
       }
   },
   created() {
     const customActions = {
       getAll: { method: 'GET', url: 'http://localhost:3000/buildings' },
-      saveData: { method: 'POST' }
+      saveData: { method: 'POST', url: 'http://localhost:3000/'},
+      deleteData: { method: 'POST', url: 'http://localhost:3000/delete'},
     };
     this.resource = this.$resource('', {}, customActions);
   },
