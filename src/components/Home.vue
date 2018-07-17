@@ -38,8 +38,8 @@ export default {
       resource: {},
       visibleRooms: ``,
       roomElement: undefined,
-        tabActiveIndex: undefined,
-        tabActiveObjId: undefined
+      tabActiveIndex: undefined,
+      tabActiveObjId: undefined
     };
   },
   methods: {
@@ -66,7 +66,7 @@ export default {
               <li>Room Name: ${room.name}</li>
               <li>Doors: ${room.doors}</li>
               <li>Windows: ${room.windows}</li>
-              <li>Size: ${room.size}</li>
+              <li>Size: ${room.area}</li>
               <hr>
             </ul>
           </div>
@@ -80,10 +80,10 @@ export default {
 
       document.querySelector(`#${buildingId}`).innerHTML = this.visibleRooms;
     },
-      tooggleActive(index,id){
-        this.tabActiveIndex = index;
-        this.tabActiveObjId = id;
-      }
+    tooggleActive(index, id) {
+      this.tabActiveIndex = index;
+      this.tabActiveObjId = id;
+    }
   },
   created() {
     const customActions = {
