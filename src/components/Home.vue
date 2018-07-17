@@ -23,7 +23,7 @@
 
           </div>
           <div class="card-action">
-            <a href="#">View</a>
+            <a href="#">Edit</a>
             <a href="#">Delete</a>
           </div>
         </div>
@@ -68,6 +68,7 @@ export default {
               <li>Doors: ${room.doors}</li>
               <li>Windows: ${room.windows}</li>
               <li>Size: ${room.size}</li>
+              <hr>
             </ul>
           </div>
           `;
