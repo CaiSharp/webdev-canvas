@@ -5,7 +5,7 @@
   <form>
     <div class="row">cd 
       <div class="input-field col s6">
-        <input type="text" ref="buildingname" id="buildingname" class="validate"/>
+        <input type="text" v-model="buildingname" id="buildingname" class="validate"/>
         <label for="buildingname">Name of the building</label>
       </div>
     </div>
@@ -15,7 +15,7 @@
     </div>
       <div class="col s6">
         <p class="range-field">
-          <input type="range" ref="floors" id="floors" min="1" max="6" />
+          <input type="range" v-model="floors" id="floors" min="1" max="6" />
         </p>
       </div>
     </div>
@@ -37,8 +37,8 @@ export default {
       viewState: 1,
       newCard: undefined,
       roomCounter: undefined,
-      buildingname: undefined,
-      floors: undefined
+      buildingname: '',
+      floors: 1,
     };
   },
   methods: {
@@ -57,10 +57,6 @@ export default {
     }
   },
   mounted() {
-    setVar: () => {
-      this.buildingname = this.$refs.buildingname.value;
-      this.floors = this.$refs.floors.value;
-    };
   }
 };
 </script>
