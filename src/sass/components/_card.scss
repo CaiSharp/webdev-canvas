@@ -1,0 +1,19 @@
+.card{
+    .card-content{
+        .card-title{
+            margin-bottom: 2rem;
+        }
+        ul{
+            li {
+                margin-bottom: .5rem;
+            }
+        }
+    }
+
+    &-tabs{
+        .active{
+            font-weight: bold;
+        }
+    }
+    &-action{}
+}

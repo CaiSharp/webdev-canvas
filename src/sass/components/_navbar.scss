@@ -1,6 +1,10 @@
 nav{
+    margin-bottom: 5rem;
+    background-color: #4da9d5;
     .nav-wrapper{
-        .brand-logo{font-size: 3rem}
+        .brand-logo{
+            i{font-size: 4.5rem}
+        }
         ul{
             li{
                 a{font-size: 1.8rem}
