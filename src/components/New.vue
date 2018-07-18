@@ -107,7 +107,7 @@ export default {
       viewState: 1,
       resource: {},
       newCard: {
-        id: `building${Math.floor(Math.random() * 1000 + 1)}`,
+        id: `building${window.crypto.getRandomValues(new Uint32Array(10)).join('')}`,
         name: ``,
         floors: [],
         rooms: []
