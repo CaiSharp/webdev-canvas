@@ -8,7 +8,6 @@
                 <ul>
                   <li>Floors: {{value.floors.length}}</li>
                   <li>Rooms: {{value.rooms.length}}</li>
-                  <!-- <li>qm: {{value.floors}}</li> -->
                 </ul>
               </div>
               <div class="card-tabs">
@@ -18,7 +17,10 @@
                   </li>
                 </ul>
               </div>
-              <div :id="value.id" class="card-content grey lighten-4">
+               <div class="row">
+              <div :id="value.id" class="card-content ">
+
+                  </div>
               </div>
               <div class="card-action">
                 <a href="#">Edit</a>
@@ -61,15 +63,22 @@ export default {
             console.log(room.floorId);
             if (room.floorId === floorId) {
               const template = `
+
+          <div class="col s6 xs12" v-for="value in allData">
+              <div class="card darken-2">
+              <div class="card-content">
           <div class="room">
             <ul>
-              <li>Room Name: ${room.name}</li>
+              <li class="name">${room.name}</li>
+              <li>Area: ${room.area}m³</li>
               <li>Doors: ${room.doors}</li>
               <li>Windows: ${room.windows}</li>
-              <li>Size: ${room.area}m^3</li>
-              <hr>
             </ul>
           </div>
+          </div>
+          </div>
+            </div>
+
           `;
 
               this.visibleRooms = this.visibleRooms + template;

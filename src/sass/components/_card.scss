@@ -1,19 +1,39 @@
-.card{
-    .card-content{
-        .card-title{
-            margin-bottom: 2rem;
-        }
-        ul{
-            li {
-                margin-bottom: .5rem;
-            }
-        }
+.card {
+  .card-content {
+    .card-title {
+      margin-bottom: 2rem;
     }
+    ul {
+      li {
+        margin-bottom: .5rem;
+      }
+    }
+  }
+  &-tabs {
+    .active {
+      font-weight: bold;
+    }
+  }
+  &-action {}
+}
 
-    &-tabs{
-        .active{
-            font-weight: bold;
-        }
+.card-content {
+  .room {
+    margin: 0px 0px 25px 0px;
+    position: relative;
+    li {
+      color: #000;
+      &.name {
+        color: #f57c00
+      }
     }
-    &-action{}
+  }
+}
+
+.card-action {
+  height: 55px;
+}
+
+a {
+  cursor: pointer;
 }
