@@ -1,18 +1,17 @@
-# webdev-canvas
+# webdev1
 
-> A Vue.js project
+###Canvas Project Client
 
-## Build Setup
+install the dependencies with: <br>
+ 
+* "*npm install*". 
 
-``` bash
-# install dependencies
-npm install
+run the server with the command: <br>
+ 
+* "*npm run dev*". 
 
-# serve with hot reload at localhost:8080
-npm run dev
+<br>Then use your browser and navigate to the following address: 
 
-# build for production with minification
-npm run build
-```
+**localhost:8080**
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
