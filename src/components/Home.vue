@@ -66,7 +66,7 @@ export default {
               <li>Room Name: ${room.name}</li>
               <li>Doors: ${room.doors}</li>
               <li>Windows: ${room.windows}</li>
-              <li>Size: ${room.area}</li>
+              <li>Size: ${room.area}m^3</li>
               <hr>
             </ul>
           </div>
