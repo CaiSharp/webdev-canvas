@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar.vue'
 import New from './components/New.vue'
+import Edit from './components/Edit.vue'
 import Home from './components/Home.vue'
 
 export const routes = [{
@@ -18,5 +19,14 @@ export const routes = [{
       default: New
     }
   },
+    {
+        path: '/edit/:obj',
+        name: 'edit',
+        components: {
+            navbar: Navbar,
+            default: Edit
+        },
+        props: true
+    },
   //{path: '/*', redirect: {name: 'home'}}
 ];

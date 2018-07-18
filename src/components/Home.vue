@@ -21,7 +21,7 @@
               <div :id="value.id" class="card-content grey lighten-4">
               </div>
               <div class="card-action">
-                <a href="#">Edit</a>
+                <router-link tag="a" :to="{name: 'edit', params: {obj:value}}">Edit</router-link>
                 <a @click="deleteObject(value)">Delete</a>
               </div>
             </div>

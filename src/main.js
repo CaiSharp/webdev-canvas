@@ -16,9 +16,6 @@ const router = new VueRouter({
 
 new Vue({
   el: '#app',
-  // http: {
-  //   root: 'https://localhost:3000',
-  // },
   router,
   render: h => h(App)
 });

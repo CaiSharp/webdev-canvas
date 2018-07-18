@@ -2,7 +2,8 @@
 <div class="container">
 
 <div id="new-building" v-show="viewState === 1">
-    <h1>Lets create a new Room</h1>
+    <h1>Let's create a new Room :)</h1>
+    <br>
   <form>
     <div class="row">
       <div class="input-field col s6">
@@ -11,16 +12,16 @@
       </div>
     </div>
     <div class="row">
-      <div class="col s2">
-      <label for="floors">Floors</label>
+      <div class="col s12">
+      <label for="floors">Floors : <span>{{floors}}</span></label>
     </div>
-      <div class="col s6">
+      <div class="col s12">
         <p class="range-field">
-          <input type="range" v-model="floors" id="floors" min="1" max="6" />
+          <input type="range" v-model="floors" id="floors" min="1" max="10" />
         </p>
       </div>
     </div>
-    <a class="btn next" v-on:click="firstStep()">Next</a>
+    <a class="btn next right" v-on:click="firstStep()">Next</a>
   </form>
 </div>
 
@@ -38,7 +39,7 @@
 </div>
 
 <div id="new-floor" v-show="viewState === 3">
-<h1>Add Rooms</h1>
+<h1>Allocate rooms to floors</h1>
 <form>
 
 <div class="row">
@@ -50,37 +51,37 @@
 
 <div class="row">
   <div class="col s2">
-  <label for="floors">Area</label>
+  <label for="floors">Area : <span>{{labelArea}} qm</span></label>
 </div>
   <div class="col s6">
     <p class="range-field">
-      <input type="range" id="room-area" min="1" max="150" />
+      <input type="range" v-model="labelArea" id="room-area" min="1" max="150"/>
     </p>
   </div>
 </div>
 
 <div class="row">
   <div class="col s2">
-  <label for="floors">Doors</label>
+  <label for="floors">Doors : <span>{{labelDoors}}</span></label>
 </div>
   <div class="col s6">
     <p class="range-field">
-      <input type="range" id="room-doors" min="0" max="10" />
+      <input type="range" v-model="labelDoors" id="room-doors" min="0" max="10" />
     </p>
   </div>
 </div>
 
 <div class="row">
   <div class="col s2">
-  <label for="floors">Windows</label>
+  <label for="floors">Windows : <span>{{labelWindows}}</span> </label>
 </div>
   <div class="col s6">
     <p class="range-field">
-      <input type="range" id="room-windows" min="0" max="20" />
+      <input type="range" id="room-windows" v-model="labelWindows" min="0" max="20" />
     </p>
   </div>
 </div>
-
+    <div class="info">Successfully assigned the room!</div>
 <div class="row">
   <div class="col s6">
     <select id="room-select">
@@ -91,7 +92,7 @@
 </div>
 
 <a class="btn" v-on:click="addRoom()">Add Room</a>
-<a class="btn orange" v-on:click="save()">All rooms added</a>
+<a class="btn orange" v-on:click="save()">Save & Quit</a>
 </form>
 
 </div>
@@ -112,7 +113,11 @@ export default {
         rooms: []
       },
       buildingname: '',
-      floors: 1
+      floors: 1,
+        labelArea: 0,
+        labelDoors: 0,
+        labelWindows: 0,
+        labelFloorCount: 0
     };
   },
   methods: {
@@ -150,12 +155,26 @@ export default {
         windows: `${roomWindows}`,
         floorId: `${roomSelect}`
       });
+        document.querySelector('.info').classList.add('show');
+        setTimeout(() =>{
+            document.querySelector('.info').classList.remove('show');
+        },2500);
+
+        document.querySelector('#room-name').value = '';
+        document.querySelector('#room-area').value = 0;
+        document.querySelector('#room-doors').value = 0;
+        document.querySelector('#room-windows').value = 0;
+        this.labelWindows = 0;
+        this.labelDoors = 0;
+        this.labelArea = 0;
     },
     save() {
       this.viewState = 1;
-      this.resource.saveData(this.newCard).then(response => {
-        this.$router.push('/');
-      });
+      if(confirm('Saved! Return to home? ')){
+          this.resource.saveData(this.newCard).then(response => {
+              this.$router.push('/');
+          });
+      }
     }
   },
   created() {
@@ -170,6 +189,56 @@ export default {
 <style lang="scss" scoped>
 select {
   display: inherit;
+    height: 4rem;
+}
+input {
+  margin-bottom: 1rem;
+  font-size: 1.8rem !important;
+}
+.input-field{
+  font-size: 3rem;
+}
+
+label {
+  span{
+    color: rgba(238, 110, 115, 0.7)}
+}
+
+h1, h2, h3, h4, h5 {
+  color: rgba(238, 110, 115, 0.7)
+}
+.info{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 7rem;
+    background-color: rgba(238, 110, 115, 1);
+    border: 1px solid #a3364f;
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+    line-height: 7rem;
+    font-size: 2rem;
+}
+.show{
+    animation: moveDown 2s;
+}
+
+.info.show{
+    display: block;
+}
+
+@keyframes moveDown {
+    0%   {
+        opacity: 0;
+        transform: translateY(-200px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 </style>
 
