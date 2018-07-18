@@ -38,8 +38,8 @@ export default {
       resource: {},
       visibleRooms: ``,
       roomElement: undefined,
-        tabActiveIndex: undefined,
-        tabActiveObjId: undefined
+      tabActiveIndex: undefined,
+      tabActiveObjId: undefined
     };
   },
   methods: {
@@ -66,7 +66,7 @@ export default {
               <li>Room Name: ${room.name}</li>
               <li>Doors: ${room.doors}</li>
               <li>Windows: ${room.windows}</li>
-              <li>Size: ${room.size}</li>
+              <li>Size: ${room.area}</li>
               <hr>
             </ul>
           </div>
@@ -79,23 +79,23 @@ export default {
       });
       document.getElementById(`${buildingId}`).innerHTML = this.visibleRooms;
     },
-      toggleActive(index,id){
-        this.tabActiveIndex = index;
-        this.tabActiveObjId = id;
-      },
-      deleteObject(object){
-        if(confirm('Are you sure?')){
-            this.resource.deleteData(object).then(response=>{
-                this.fetchData();
-            });
-        }
+    toggleActive(index, id) {
+      this.tabActiveIndex = index;
+      this.tabActiveObjId = id;
+    },
+    deleteObject(object) {
+      if (confirm('Are you sure?')) {
+        this.resource.deleteData(object).then(response => {
+          this.fetchData();
+        });
       }
+    }
   },
   created() {
     const customActions = {
       getAll: { method: 'GET', url: 'http://localhost:3000/buildings' },
-      saveData: { method: 'POST', url: 'http://localhost:3000/'},
-      deleteData: { method: 'POST', url: 'http://localhost:3000/delete'},
+      saveData: { method: 'POST', url: 'http://localhost:3000/' },
+      deleteData: { method: 'POST', url: 'http://localhost:3000/delete' }
     };
     this.resource = this.$resource('', {}, customActions);
   },
