@@ -14,7 +14,7 @@
               <div class="card-tabs">
                 <ul class="tabs tabs-fixed-width">
                   <li class="tab" v-for="(floor,index) in value.floors">
-                    <a :class="{active: tabActiveIndex===index && tabActiveObjId===value.id}" v-on:click="displayRooms(floor.id, value.id), tooggleActive(index,value.id)">{{floor.name}}</a>
+                    <a :class="{active: tabActiveIndex===index && tabActiveObjId===value.id}" v-on:click="displayRooms(floor.id, value.id), toggleActive(index,value.id)">{{floor.name}}</a>
                   </li>
                 </ul>
               </div>
@@ -77,9 +77,9 @@ export default {
           });
         }
       });
-      document.querySelector(`#${buildingId}`).innerHTML = this.visibleRooms;
+      document.getElementById(`${buildingId}`).innerHTML = this.visibleRooms;
     },
-      tooggleActive(index,id){
+      toggleActive(index,id){
         this.tabActiveIndex = index;
         this.tabActiveObjId = id;
       },

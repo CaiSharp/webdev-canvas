@@ -25,7 +25,7 @@
 </div>
 
 <div id="new-floor" v-show="viewState === 2">
-  <h1>Give youre floors names</h1>
+  <h1>Give your floors names</h1>
 <form>
   <div class="row" v-for="floor in this.newCard.floors">
     <div class="input-field col s6">
