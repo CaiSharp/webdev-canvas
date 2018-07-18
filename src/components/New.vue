@@ -104,8 +104,9 @@ export default {
   data() {
     return {
       viewState: 1,
-        resource: {},
+      resource: {},
       newCard: {
+        id: `building${Math.floor(Math.random() * 1000 + 1)}`,
         name: ``,
         floors: [],
         rooms: []
@@ -152,22 +153,21 @@ export default {
     },
     save() {
       this.viewState = 1;
-      this.resource.saveData(this.newCard).then(response=>{
-          this.$router.push('/');
+      this.resource.saveData(this.newCard).then(response => {
+        this.$router.push('/');
       });
     }
   },
-    created() {
-        const customActions = {
-            saveData: { method: 'POST', url: 'http://localhost:3000/'}
-        };
-        this.resource = this.$resource('', {}, customActions);
-    }
+  created() {
+    const customActions = {
+      saveData: { method: 'POST', url: 'http://localhost:3000/' }
+    };
+    this.resource = this.$resource('', {}, customActions);
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-
 select {
   display: inherit;
 }
