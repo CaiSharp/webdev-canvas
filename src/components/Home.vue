@@ -1,7 +1,13 @@
 <template>
   <div class="container">
     <div class="row">
-          <div class="col s12 m6" v-for="value in allData">
+      <div class="input-field col s12">
+        <input type="text" v-model="searchQuery" class="validate" id="search" @input="executeSearch"/>
+        <label for="search">Search</label>
+      </div>
+    </div>
+    <div class="row">
+          <div class="col s12 m6" v-for="value in searchResult">
             <div class="card darken-2">
               <div class="card-content">
                 <span class="card-title">{{value.name}}</span>
@@ -41,7 +47,9 @@ export default {
       visibleRooms: ``,
       roomElement: undefined,
       tabActiveIndex: undefined,
-      tabActiveObjId: undefined
+      tabActiveObjId: undefined,
+        searchQuery: '',
+        searchResult: []
     };
   },
   methods: {
@@ -53,6 +61,7 @@ export default {
         })
         .then(data => {
           this.allData = data.body;
+          this.searchResult = this.allData;
         });
     },
     displayRooms(floorId, buildingId) {
@@ -98,7 +107,17 @@ export default {
           this.fetchData();
         });
       }
-    }
+    },
+      executeSearch(){
+        let searchLowercase = this.searchQuery.toLowerCase();
+
+        if(searchLowercase.length >0 ){
+            this.searchResult = this.allData.filter( el => el.name.toLowerCase().includes(searchLowercase));
+        }
+        else {
+            this.searchResult = this.allData;
+        }
+      }
   },
   created() {
     const customActions = {
