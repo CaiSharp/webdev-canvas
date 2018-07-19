@@ -82,7 +82,7 @@
                 });
             },
             returnRoomsInFloor(roomsArr, floorId) {
-                return roomsArr.filter(el => el.floorId = floorId);
+                return roomsArr.filter(el => el.floorId === floorId);
             }
         },
         created() {
